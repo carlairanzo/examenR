@@ -1,0 +1,17 @@
+Package: fibonacci
+Type: Package
+Title: fibonacci 
+Version: 0.0.1
+Date: 2023-12-20
+Encoding: UTF-8
+Authors@R: c(person(given = "Carla",
+           family = "Iranzo Aixalà",
+           role = c("aut", "cre"),
+           email = "carla.iranzo@estudiantat.upc.edu",
+           comment = c(ORCID = "0000-0001-5949-7443")))
+Maintainer: Carla Iranzo Aixalà <carla.iranzo@estudiantat.upc.edu>
+Description: Fibbonaci sequence.
+Depends: R (>= 2.13.1)
+License: GPL (>= 2)
+NeedsCompilation: no
+RoxygenNote: 7.2.3
