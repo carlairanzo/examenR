@@ -1,0 +1,60 @@
+---
+title: "examenR"
+author: "Carla Iranzo"
+date: '2023-12-20'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+2. [4 points] Use the fibonacci function to compute the first 31 Fibonacci numbers (n from 0 to 30). Todo so, use a sequential approach and an approach taking advantage of the parallelization tools in R and compare the computing times. Which approach is preferrable? Write everything in a Rmd / qmd document and compile it to html.
+
+
+Sequential approach
+
+```{r}
+
+set.seed(1234)
+source("fibonacci.R")
+sequential_times <- system.time({
+  fib_seq <- sapply(0:30, fibonacci)
+})
+
+print(fib_seq)
+print(sequential_times)
+
+```
+
+Parallel Approach
+
+```{r message=FALSE, warning=FALSE}
+library(doParallel)
+library(doRNG)
+source("fibonacci.R")
+
+set.seed(1234)
+cl <- makeCluster(detectCores())
+parallel_times <- system.time({
+  fib_par <- sapply(0:30, fibonacci)
+})
+stopCluster(cl)
+
+print(fib_par)
+print(parallel_times)
+```
+
+```{r}
+comparison_table <- data.frame(
+  Approach = c("Sequential", "Parallel"),
+  Time = c(sequential_times[3], parallel_times[3])
+)
+
+print(comparison_table)
+
+```
+
+The computing time may vary in each execution but mostly, both computing times are nearly the same.
+
+Github repository: https://github.com/carlairanzo/examenR
